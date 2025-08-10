@@ -24,7 +24,15 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = {"http://localhost:5173", "http://127.0.0.1:5173"}, allowCredentials = "true")
+@CrossOrigin(
+    origins = {
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://jobluuui.onrender.com"
+    },
+    allowCredentials = "true"
+)
+
 public class GoogleAuthController {
 
     @Autowired
