@@ -45,6 +45,10 @@ public class SecurityConfig {
                                 "/api/auth/**",
                                 "/api/public/**",
                                 "/api/users/register",
+                                "/api/users/login",
+                                "/api/users/sendOTP/**",     // Add this line
+                                "/api/users/verifyOtp/**",   // Add this line
+                                "/api/users/changePass",     // Add this line (for password reset)
                                 "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html",
                                 "/actuator/**"
                         ).permitAll()
