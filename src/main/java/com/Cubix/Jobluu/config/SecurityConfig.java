@@ -42,19 +42,50 @@ public class SecurityConfig {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
+                                // Authentication endpoints - Public access
                                 "/api/auth/**",
                                 "/api/public/**",
                                 "/api/users/register",
                                 "/api/users/login",
-                                "/api/users/sendOTP/**",     // Add this line
-                                "/api/users/verifyOtp/**",   // Add this line
-                                "/api/users/changePass",     // Add this line (for password reset)
-                                "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html",
+                                "/api/users/sendOTP/**",     
+                                "/api/users/verifyOtp/**",   
+                                "/api/users/changePass",
+                                
+                                // Job endpoints - Public read access (typically job listings should be public)
+                                "/jobs/getAll",
+                                "/jobs/search",
+                                "/jobs/status/**",
+                                "/jobs/{id}",
+                                
+                                // Static file serving for uploaded logos
+                                "/uploads/**",
+                                
+                                // Documentation and monitoring
+                                "/v3/api-docs/**", 
+                                "/swagger-ui/**", 
+                                "/swagger-ui.html",
                                 "/actuator/**"
                         ).permitAll()
+                        .requestMatchers(
+                                // Job management endpoints - Authenticated access required
+                                "/jobs/post",
+                                "/jobs/create-with-logo",
+                                "/jobs/update/**",
+                                "/jobs/delete/**",
+                                "/jobs/update-with-logo/**",
+                                
+                                // Profile management - Authenticated access required
+                                "/api/profiles/**",
+                                
+                                // Notification management - Authenticated access required
+                                "/notification/**",
+                                
+                                // User account management - Authenticated access required
+                                "/api/users/**"
+                        ).authenticated()
                         .anyRequest().authenticated()
                 );
-
+        
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
@@ -67,7 +98,7 @@ public class SecurityConfig {
         cfg.setAllowedMethods(List.of("GET","POST","PUT","DELETE","PATCH","OPTIONS"));
         cfg.setAllowedHeaders(List.of("*"));
         cfg.setAllowCredentials(true);
-
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", cfg);
         return source;
