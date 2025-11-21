@@ -95,7 +95,7 @@ public class SecurityConfig {
         CorsConfiguration cfg = new CorsConfiguration();
         cfg.setAllowedOrigins(List.of(
         "http://localhost:5173",          
-        "https://jobluuui.onrender.com"   
+        "https://jobluu-ui.vercel.app"   
         ));
         cfg.setAllowedMethods(List.of("GET","POST","PUT","DELETE","PATCH","OPTIONS"));
         cfg.setAllowedHeaders(List.of("*"));
