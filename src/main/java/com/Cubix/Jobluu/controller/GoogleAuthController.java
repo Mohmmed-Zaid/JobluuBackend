@@ -1,4 +1,4 @@
-// GoogleAuthController.java - Updated version with better error handling
+
 package com.Cubix.Jobluu.controller;
 
 import com.Cubix.Jobluu.dto.AccountType;
@@ -28,7 +28,7 @@ import java.util.Map;
     origins = {
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "https://jobluuui.onrender.com"
+        "https://jobluu-ui.vercel.app/"
     },
     allowCredentials = "true"
 )
