@@ -15,5 +15,5 @@ public class Applicant {
     private String email;
     private String resumeUrl;
     private LocalDateTime appliedAt;
-    private String status; // APPLIED, REVIEWED, SHORTLISTED, REJECTED, HIRED
+    private String status; // APPLIED, REJECTED, HIRED
 }
