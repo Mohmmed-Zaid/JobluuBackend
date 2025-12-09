@@ -15,9 +15,9 @@ public class JwtHelper {
     @Value("${jwt.secret:jobluuSuperSecretKeyForJWTGeneration1234567890}")
     private String SECRET_KEY;
 
-    // INCREASED TO 24 HOURS - This was your main problem (was only 1 hour)
+    // One Day
     @Value("${jwt.expiration:86400000}")
-    private long JWT_EXPIRATION_MS = 1000 * 60 * 60 * 24; // 24 hours instead of 1 hour
+    private long JWT_EXPIRATION_MS = 1000 * 60 * 60 * 24; 
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
